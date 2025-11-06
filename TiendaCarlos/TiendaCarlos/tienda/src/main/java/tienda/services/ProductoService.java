@@ -1,7 +1,7 @@
-package com.tienda.service;
+package tienda.services;
 
-import com.tienda.domain.Producto;
-import com.tienda.repository.ProductoRepository;
+import tienda.domain.Producto;
+import tienda.repository.ProductoRepository;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -78,6 +78,10 @@ public class ProductoService {
     @Transactional(readOnly = true)
     public List<Producto> consultaSQL(double precioInf, double precioSup) {
         return productoRepository.consultaSQL(precioInf, precioSup);
+    }
+    @Transactional(readOnly = true)
+    public List<Producto> consultaTarea(String nombre) {
+        return productoRepository.consultaTarea(nombre);
     }
 
 }

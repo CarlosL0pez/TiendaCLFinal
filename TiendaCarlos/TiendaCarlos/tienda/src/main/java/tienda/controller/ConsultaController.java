@@ -1,6 +1,6 @@
-package com.tienda.controller;
+package tienda.controller;
 
-import com.tienda.service.ProductoService;
+import tienda.services.ProductoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,6 +53,14 @@ public class ConsultaController {
         model.addAttribute("productos", lista);
         model.addAttribute("precioInf", precioInf);
         model.addAttribute("precioSup", precioSup);
+        return "/consultas/listado";
+    }
+    @PostMapping("/consultaTarea")
+    public String consultaTarea(@RequestParam() String nombre,
+             Model model) {
+        var lista = productoService.consultaTarea(nombre);
+        model.addAttribute("productos", lista);
+        model.addAttribute("Nombre", nombre);       
         return "/consultas/listado";
     }
 }
