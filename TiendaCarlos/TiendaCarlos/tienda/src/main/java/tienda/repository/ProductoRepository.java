@@ -23,7 +23,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
     public List<Producto> consultaSQL(@Param("precioInf") double precioInf, @Param("precioSup") double precioSup);
     
     @Query(nativeQuery = true,
-            value = "SELECT * FROM producto p WHERE p.descripcion = :nombre")
+            value = "SELECT * FROM producto p WHERE p.descripcion like %:nombre%")
     public List<Producto> consultaTarea(@Param("nombre") String nombre);
 }
 
