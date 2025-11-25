@@ -24,7 +24,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.templatemode.TemplateMode;
-import com.tienda.service.RutaService;
+import tienda.services.RutaService;
 
 
 @Configuration
@@ -82,13 +82,13 @@ public class ProjectConfig implements WebMvcConfigurer {
         registro.addInterceptor(localeChangeInterceptor());
     }
 
-    @Bean("messageSource")
+    /*@Bean("messageSource")
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasenames("messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
-    }
+    }*/
 
     // ============================================
     //   NUEVA SEGURIDAD (con RutaService)
@@ -96,7 +96,7 @@ public class ProjectConfig implements WebMvcConfigurer {
     @Autowired
     private RutaService rutaService;
 
-    @Bean
+  /*  @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         var rutas = rutaService.getRutas();
@@ -139,7 +139,7 @@ public class ProjectConfig implements WebMvcConfigurer {
         );
 
         return http.build();
-    }
+    }*/
 
     // ============================================
     //   FIREBASE
@@ -150,7 +150,7 @@ public class ProjectConfig implements WebMvcConfigurer {
     @Value("${firebase.json.file}")
     private String jsonFile;
 
-    @Bean
+    /*@Bean
     public Storage storage() throws IOException {
         ClassPathResource resource = new ClassPathResource(jsonPath + File.separator + jsonFile);
 
@@ -158,5 +158,5 @@ public class ProjectConfig implements WebMvcConfigurer {
             GoogleCredentials credentials = GoogleCredentials.fromStream(inputStream);
             return StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         }
-    }
+    }*/
 }

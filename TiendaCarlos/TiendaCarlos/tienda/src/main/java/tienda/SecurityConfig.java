@@ -1,8 +1,8 @@
-package com.tienda;
+package tienda;
 
 
-import com.tienda.domain.Ruta;
-import com.tienda.service.RutaService;
+import tienda.domain.Ruta;
+import tienda.services.RutaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
