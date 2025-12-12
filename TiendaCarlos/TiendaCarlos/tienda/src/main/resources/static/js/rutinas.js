@@ -29,3 +29,44 @@ document.addEventListener('DOMContentLoaded', function () {
 setTimeout(() => {
     document.querySelectorAll('.toast').forEach(t => t.classList.remove('show'));
 }, 4000);
+
+
+function addCart(formulario) {
+
+    // 1. Obtención del ID del producto y la ruta del "action"
+    var idProducto = $(formulario).find('input[name="idProducto"]').val();
+    var ruta = $(formulario).attr('action') || '/carrito/agregar';
+
+    // 2. Seguridad (token CSRF de Spring Security)
+    var csrfToken = $('meta[name="_csrf"]').attr('content');
+    var csrfHeader = $('meta[name="_csrf_header"]').attr('content');
+
+    // 3. Petición AJAX
+    $.ajax({
+        url: ruta,
+        type: 'POST',
+        data: {
+            // CRÍTICO: solo se envía el ID del producto
+            idProducto: idProducto
+        },
+
+        beforeSend: function (xhr) {
+            if (csrfHeader && csrfToken) {
+                xhr.setRequestHeader(csrfHeader, csrfToken);
+            }
+        },
+
+        success: function (response) {
+            // Actualizar fragmento HTML del carrito
+            $("#resultBlock").html(response);
+
+            console.log("Producto agregado con cantidad por defecto (1).");
+            alert("Producto agregado al carrito");
+        },
+
+        error: function (xhr, status, error) {
+            var mensaje = xhr.responseText || "Error en la conexión.";
+            alert("Error al agregar producto: " + mensaje);
+        }
+    });
+}
