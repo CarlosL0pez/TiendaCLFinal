@@ -63,7 +63,7 @@ public class CarritoController {
             model.addAttribute("listaItems", carrito);
 
             // 5. Retornar el fragmento HTML
-            return new ModelAndView("/carrito/fragmentos :: verCarrito", model.asMap());
+            return new ModelAndView("carrito/fragmentos :: verCarrito", model.asMap());
 
         } catch (RuntimeException e) {
             // 6. Manejo de errores (p. ej., stock insuficiente, producto no existe)
